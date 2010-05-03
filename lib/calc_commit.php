@@ -19,7 +19,32 @@ class calc implements calc_interface
 				$data[$date] = 1;
 			}
 		}
-		// TODO: fillup dates here - no commit on a date within min and max will result in a wrong graph
+
+		// get first entry
+		reset($data);
+		$first=DateTime::createFromFormat('Ymd', key($data));
+
+		// Get last entry
+		end($data);
+		$last=DateTime::createFromFormat('Ymd', key($data));
+
+		// Create missing date values
+		$current=$first;
+		$day=new DateInterval('P1D');
+		while ($current<$last) {
+			$curd=$current->format('Ymd');
+			if (!array_key_exists($curd, $data))
+			{
+				$data[$curd]=0;
+			}
+			// get next date
+			$current=$current->add($day);
+		}
+
+		// Sort by key
+		ksort($data);
+
+		// Return sorted result
 		return $data;
 	}
 
