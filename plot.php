@@ -13,6 +13,10 @@ require_once('conf/config.php');
 if (array_key_exists('calc_type', $_GET))
 {
 	$calc_type=$_GET['calc_type'];
+	if ($calc_type=='files')
+	{
+		$scm_getpaths=true;
+	}
 }
 
 // get scm management class

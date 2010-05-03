@@ -21,6 +21,9 @@ class visual implements visual_interface
 		$min = 0;
 		$max = max($data);
 
+		// Avoid DIV
+		if ($max==0) $max=1;
+
 		// number of entries
 		$numentries=count($data);
 
@@ -59,7 +62,7 @@ class visual implements visual_interface
 
 		// min and max values
 		imagestring($img, $font_mark, $border-$fontheight_mark/2, $bordertop-$fontheight_mark/2, $max, $text_color);
-		imagestring($img, $font_mark, $border-$fontheight_mark/2, $visual_height-$border-$fontheight_mark/2, $min, $text_color);
+		imagestring($img, $font_mark, $border-$fontheight_mark/2, $visual_height-$borderbottom-$fontheight_mark/2, $min, $text_color);
 
 		// process entries
 		$i=0;
@@ -98,6 +101,7 @@ class visual implements visual_interface
 
 		// Create png
 		imagepng($img);
+
 		// deallocate colors
 		imagecolordeallocate($img, $line_color);
 		imagecolordeallocate($img, $text_color);

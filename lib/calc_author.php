@@ -19,6 +19,11 @@ class calc implements calc_interface
 				$data[$author] = 1;
 			}
 		}
+
+		// Sort array
+		ksort($data);
+
+		// Return data
 		return $data;
 	}
 

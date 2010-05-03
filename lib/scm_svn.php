@@ -22,7 +22,7 @@ class scm implements scm_interface
 
 		// Set flags
 		$flags = 0;
-		if (!$scm_getpaths)
+		if ($scm_getpaths)
 		{
 			$flags=$flags|SVN_DISCOVER_CHANGED_PATHS;
 		}
