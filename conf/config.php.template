@@ -1,0 +1,20 @@
+<?php
+// Choose type of scm (git,svn,....)
+// There needs to be a class in the lib folder to handle the scm commands!
+// Read lib/scm-interface.php for interface definition
+$scm_type='svn';
+$scm_username='USERNAME';
+$scm_password='PASSWORD';
+$scm_url='http://URL.TLD/PROJECT';
+$scm_limit=1000; // max number of commits
+$scm_getpaths=false; // get all modified paths -> slow but needed for calc_files
+
+// Calculation plugin
+$calc_type="commit";
+
+// Visualization plugin
+$visual_type="standard";
+$visual_width=400;
+$visual_height=80;
+$visual_fontsize=6;
+$visual_header=''; // leave empty for calc based setting
