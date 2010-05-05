@@ -1,20 +1,52 @@
 <?php
+require_once('lib/config_object.php');
+/// Configuration is stored in a named array
+$conf=array();
+
 // Choose type of scm (git,svn,....)
 // There needs to be a class in the lib folder to handle the scm commands!
 // Read lib/scm-interface.php for interface definition
-$scm_type='svn';
-$scm_username='USERNAME';
-$scm_password='PASSWORD';
-$scm_url='http://URL.TLD/PROJECT';
-$scm_limit=1000; // max number of commits
-$scm_getpaths=false; // get all modified paths -> slow but needed for calc_files
+$c=new config_object;
+
+$c->scm_type='svn';
+$c->scm_username='';
+$c->scm_password='';
+$c->scm_url='';
+$c->scm_limit=10000; // max number of commits
+$c->scm_getpaths=false; // get all modified paths -> needed for calc_files
 
 // Calculation plugin
-$calc_type="commit";
+$c->calc_type='commit';
 
 // Visualization plugin
-$visual_type="standard";
-$visual_width=400;
-$visual_height=80;
-$visual_fontsize=6;
-$visual_header=''; // leave empty for calc based setting
+$c->visual_type='standard';
+$c->visual_width=800;
+$c->visual_height=200;
+$c->visual_fontsize=4;
+$c->visual_header=''; // leave empty for calc based setting
+
+// add to config
+$conf["svn"]=$c;
+
+// git
+$c=new config_object;
+
+$c->scm_type='git';
+$c->scm_username='';
+$c->scm_password='';
+$c->scm_url='';
+$c->scm_limit=10000; // max number of commits
+$c->scm_getpaths=false; // get all modified paths -> needed for calc_files
+
+// Calculation plugin
+$c->calc_type='commit';
+
+// Visualization plugin
+$c->visual_type='standard';
+$c->visual_width=800;
+$c->visual_height=200;
+$c->visual_fontsize=4;
+$c->visual_header=''; // leave empty for calc based setting
+
+// add to config
+$conf["git"]=$c;

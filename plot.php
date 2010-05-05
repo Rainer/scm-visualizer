@@ -9,6 +9,41 @@ if (!file_exists('conf/config.php'))
 // require config
 require_once('conf/config.php');
 
+// Which config should be used?
+if (array_key_exists('conf', $_GET))
+{
+	$useconf=$_GET['conf'];
+} else {
+	// No config object given -> use first one
+	if (count($conf>1))
+	{
+		$useconf=key($conf);
+	} else {
+		die('Not configured! Please check your configuration!');
+	}
+}
+
+// Get config vars
+if (array_key_exists($useconf,$conf))
+{
+	$scm_type=$conf[$useconf]->scm_type;
+	$scm_username=$conf[$useconf]->scm_username;
+	$scm_password=$conf[$useconf]->scm_password;
+	$scm_url=$conf[$useconf]->scm_url;
+	$scm_limit=$conf[$useconf]->scm_limit;
+	$scm_getpaths=$conf[$useconf]->scm_getpaths;
+
+	$calc_type=$conf[$useconf]->calc_type;
+
+	$visual_type=$conf[$useconf]->visual_type;
+	$visual_width=$conf[$useconf]->visual_width;
+	$visual_height=$conf[$useconf]->visual_height;
+	$visual_fontsize=$conf[$useconf]->visual_fontsize;
+	$visual_header=$conf[$useconf]->visual_header;
+} else {
+	die('Config object '.$useconf.' not found!');
+}
+
 // Read url options
 if (array_key_exists('calc_type', $_GET))
 {
